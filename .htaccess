@@ -1,0 +1,11 @@
+
+RewriteEngine On
+RewriteRule ^logout\/?$ index.php?logout [L]
+RewriteRule ^home\/?$ index.php?pages=home [L]
+RewriteRule ^news\/?$ index.php?pages=news [L]
+RewriteRule ^players\/?$ index.php?pages=players [L]
+RewriteRule ^cities\/?$ index.php?pages=cities [L]
+RewriteRule ^login\/?$ index.php?pages=login [L]
+RewriteRule ^register\/?$ index.php?pages=register [L]
+RewriteRule ^dashboard\/?$ index.php?pages=dashboard [L]
+ErrorDocument 404 http://localhost/LIVE/
