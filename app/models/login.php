@@ -3,7 +3,6 @@ if (!defined('LOCAL')) exit();
 
 class LoginModel extends DBModel
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -12,12 +11,14 @@ class LoginModel extends DBModel
 
     protected function setLogin(): bool
     {
-        $query = 'SELECT * FROM users WHERE user = ? AND pass = ?';
-        $types = 'ss';
-        $params = [$this->user, $this->pass];
+        $query = 'SELECT * FROM users WHERE `user` = ? AND `check` = ?';
+        $types = 'si';
+        $params = [$this->getUser(), 1];
         if ($res = $this->getResult($query, $types, $params)) {
-            $_SESSION['login'] = $res;
-            return true;
+            if (password_verify($this->getPass(), $res['pass'])) {
+                $_SESSION['login'] = $res;
+                return true;
+            }
         }
         return false;
     }

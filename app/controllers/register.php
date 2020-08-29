@@ -13,14 +13,18 @@ class RegisterController extends RegisterModel
     {
         parent::__construct();
         $this->message = new MessageController;
-        if (isset($_POST['name'], $_POST['user'], $_POST['pass'], $_POST['email'])) {
-            $res = $this->setName($_POST['name']) && $this->setUser($_POST['user']) && $this->setEmail($_POST['email']) && $this->setPass($_POST['pass']);
-            if ($res) {
-                if ($this->setRegister()) {
-                    $this->message->setHead(true);
-                    $this->message->setMessage('Cadastro efetuado com sucesso!');
-                    return true;
+        if (isset($_POST['name'], $_POST['user'], $_POST['pass'], $_POST['pass2'], $_POST['email'])) {
+            if ($_POST['pass'] === $_POST['pass2']) {
+                $res = $this->setName($_POST['name']) && $this->setUser($_POST['user']) && $this->setEmail($_POST['email']) && $this->setPass($_POST['pass']);
+                if ($res) {
+                    if ($this->setRegister()) {
+                        $this->message->setHead(true);
+                        $this->message->setMessage('Cadastro efetuado com sucesso!');
+                        return true;
+                    }
                 }
+            } else {
+                $this->message->setMessage('As senhas não são iguais!');
             }
             $this->message->setHead(false);
             $this->message->setMessage('Não foi possível efetuar o cadastro!');
@@ -34,7 +38,7 @@ class RegisterController extends RegisterModel
             $this->name = $name;
             return true;
         }
-        $this->message->setMessage('Nome inválido, digite apenas de 4 a 16 caracteres alfanuméricos');
+        $this->message->setMessage('Nome inválido, digite apenas de 4 a 16 caracteres alfabéticos');
         return false;
     }
     
@@ -75,7 +79,7 @@ class RegisterController extends RegisterModel
 
     protected function getPass(): string
     {
-        return $this->pass;
+        return password_hash($this->pass, PASSWORD_BCRYPT);
     }
 
     protected function getEmail(): string

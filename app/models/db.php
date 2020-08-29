@@ -37,11 +37,9 @@ class DBModel
         if ($this->setPrepare($query)) {
             if ($this->setStmt($types, $params)) {
                 if ($this->stmt->execute()) {
-                    if ($this->stmt->num_rows > 0) {
-                        if ($res = $this->stmt->get_result()) {
-                            if ($row = $res->fetch_assoc()) {
-                                $r = $row;
-                            }
+                    if ($res = $this->stmt->get_result()) {
+                        if ($row = $res->fetch_assoc()) {
+                            $r = $row;
                         }
                     }
                 }
