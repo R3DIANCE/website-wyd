@@ -14,7 +14,8 @@
                     </div>
                     <div class="form-group">
                         <label for="inputPassword1">Senha</label>
-                        <input name="pass" type="password" class="form-control" id="inputPassword1">
+                        <input name="pass" type="password" class="form-control" id="inputPassword1" aria-describedby="passHelp">
+                        <small id="passHelp" class="form-text text-muted">Utilize apenas de 4 a 12 caracteres alfanuméricos!</small>
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn w-50 btn-primary">Entrar</button>
