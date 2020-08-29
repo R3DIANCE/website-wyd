@@ -16,6 +16,7 @@ class MessageController
     {
         if ($head) {
             $this->head = 'success';
+            return true;
         }
         $this->head = 'danger';
         return false;

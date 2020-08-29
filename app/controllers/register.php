@@ -14,8 +14,11 @@ class RegisterController extends RegisterModel
         parent::__construct();
         $this->message = new MessageController;
         if (isset($_POST['name'], $_POST['user'], $_POST['pass'], $_POST['email'])) {
-            if ($this->setName($_POST['name']) && $this->setUser($_POST['user']) && $this->setEmail($_POST['email']) && $this->setPass($_POST['pass'])) {
+            $res = $this->setName($_POST['name']) && $this->setUser($_POST['user']) && $this->setEmail($_POST['email']) && $this->setPass($_POST['pass']);
+            if ($res) {
                 if ($this->setRegister()) {
+                    $this->message->setHead(true);
+                    $this->message->setMessage('Cadastro efetuado com sucesso!');
                     return true;
                 }
             }
@@ -27,7 +30,7 @@ class RegisterController extends RegisterModel
 
     private function setName($name): bool
     {
-        if (preg_match('/^([a-zA-Z\ ]{4,18}+)$/', $name) !== true) {
+        if (preg_match('/^[a-zA-Z\ ]{4,18}$/i', $name)) {
             $this->name = $name;
             return true;
         }
@@ -37,7 +40,7 @@ class RegisterController extends RegisterModel
     
     private function setUser($user): bool
     {
-        if (preg_match('/^([a-zA-Z0-9]{4,12}+)$/', $user) !== true) {
+        if (preg_match('/^[a-zA-Z0-9]{4,12}$/i', $user)) {
             $this->user = $user;
             return true;
         }
@@ -47,7 +50,7 @@ class RegisterController extends RegisterModel
     
     private function setPass($pass): bool
     {
-        if (preg_match('/^([a-zA-Z0-9]{4,12}+)$/', $pass) !== true) {
+        if (preg_match('/^[a-zA-Z0-9]{4,12}$/i', $pass)) {
             $this->pass = $pass;
             return true;
         }
