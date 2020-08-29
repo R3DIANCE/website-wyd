@@ -1,15 +1,24 @@
 <?php
 if (!defined('LOCAL')) exit();
 
-class HomeController extends DBModel
+class HomeController extends HomeModel
 {
-    public function __construuct()
+    private object $message;
+
+    public function __construct()
     {
+        parent::__construct();
+        $this->message = new MessageController;
         return true;
     }
 
-    public function setParams()
+    public function getHead(): string
     {
-        return true;
+        return $this->message->getHead();
+    }
+
+    public function getMessage(): array
+    {
+        return $this->message->getMessage();
     }
 }

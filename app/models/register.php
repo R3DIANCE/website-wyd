@@ -7,6 +7,7 @@ class RegisterModel extends DBModel
     public function __construct()
     {
         parent::__construct();
+        return true;
     }
 
     protected function setRegister(): bool

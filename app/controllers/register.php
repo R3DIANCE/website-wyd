@@ -22,9 +22,9 @@ class RegisterController extends RegisterModel
                     return true;
                 }
             }
+            $this->message->setHead(false);
+            $this->message->setMessage('Não foi possível efetuar o cadastro!');
         }
-        $this->message->setHead(false);
-        $this->message->setMessage('Não foi possível efetuar o cadastro!');
         return false;
     }
 

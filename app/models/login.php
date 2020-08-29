@@ -6,6 +6,7 @@ class LoginModel extends DBModel
 
     public function __construct()
     {
+        parent::__construct();
         return true;
     }
 

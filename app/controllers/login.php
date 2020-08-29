@@ -5,9 +5,12 @@ class LoginController extends DBModel
 {
     private string $user;
     private string $pass;
+    private object $message;
 
     public function __construct()
     {
+        $this->message = new MessageController;
+        parent::__construct();
         if (isset($_POST['user'], $_POST['pass'])) {
             if ($this->setUser($_POST['user']) && $this->setPass($_POST['pass'])) {
                 if ($this->setLogin()) {
@@ -30,5 +33,15 @@ class LoginController extends DBModel
         if ($this->pass = $pass)
             return true;
         return false;
+    }
+
+    public function getHead(): string
+    {
+        return $this->message->getHead();
+    }
+
+    public function getMessage(): array
+    {
+        return $this->message->getMessage();
     }
 }
