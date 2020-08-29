@@ -20,6 +20,8 @@ class RegisterController extends RegisterModel
                 }
             }
         }
+        $this->message->setHead(false);
+        $this->message->setMessage('Não foi possível efetuar o cadastro!');
         return false;
     }
 
@@ -28,34 +30,38 @@ class RegisterController extends RegisterModel
         if (preg_match('/^([a-zA-Z\ ]{4,18}+)$/', $name) !== true) {
             $this->name = $name;
             return true;
-        } 
+        }
+        $this->message->setMessage('Nome inválido, digite apenas de 4 a 16 caracteres alfanuméricos');
         return false;
     }
-
+    
     private function setUser($user): bool
     {
         if (preg_match('/^([a-zA-Z0-9]{4,12}+)$/', $user) !== true) {
             $this->user = $user;
             return true;
         }
+        $this->message->setMessage('Usuário inválido, digite apenas de 4 a 12 caracteres alfanuméricos');
         return false;
     }
-
+    
     private function setPass($pass): bool
     {
         if (preg_match('/^([a-zA-Z0-9]{4,12}+)$/', $pass) !== true) {
             $this->pass = $pass;
             return true;
         }
+        $this->message->setMessage('Senha inválida, digite apenas de 4 a 12 caracteres alfanuméricos');
         return false;
     }
-
+    
     private function setEmail($email): bool
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->email = $email;
             return true;
         }
+        $this->message->setMessage('E-mail inválido, digite um e-mail válido de até 50 caracteres!');
         return false;
     }
 
@@ -77,6 +83,16 @@ class RegisterController extends RegisterModel
     protected function getName(): string
     {
         return $this->name;
+    }
+
+    public function getHead(): string
+    {
+        return $this->message->getHead();
+    }
+
+    public function getMessage(): array
+    {
+        return $this->message->getMessage();
     }
 
 }

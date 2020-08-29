@@ -8,6 +8,7 @@ class MessageController
 
     public function __construct()
     {
+        $this->message = array();
         return true;
     }
 
@@ -24,5 +25,15 @@ class MessageController
     {
         $this->message[] = $message;
         return true;
+    }
+
+    public function getHead(): string
+    {
+        return $this->head;
+    }
+
+    public function getMessage(): array
+    {
+        return $this->message;
     }
 }
