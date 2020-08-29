@@ -9,4 +9,3 @@ RewriteRule ^login\/?$ index.php?pages=login [L]
 RewriteRule ^register\/?$ index.php?pages=register [L]
 RewriteRule ^register/(.*)?$ index.php?pages=register&name=$1 [L]
 RewriteRule ^dashboard\/?$ index.php?pages=dashboard [L]
-ErrorDocument 404 http://localhost/LIVE/

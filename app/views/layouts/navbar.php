@@ -51,14 +51,25 @@
                                 <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                             </svg>
                         </a>
-                        <div class="dropdown-menu" style="float:left;margin-left:-7em;" arialabelledby="userDropdown">
-                            <a class="dropdown-item" href="./login">
-                                Login
-                            </a>
-                            <a class="dropdown-item" href="./register">
-                                Registrar
-                            </a>
-                        </div>
+                        <?php if (!isset($_SESSION['login'])) : ?>
+                            <div class="dropdown-menu" style="float:left;margin-left:-7em;" arialabelledby="userDropdown">
+                                <a class="dropdown-item" href="./login">
+                                    Login
+                                </a>
+                                <a class="dropdown-item" href="./register">
+                                    Registrar
+                                </a>
+                            </div>
+                        <?php else : ?>
+                            <div class="dropdown-menu" style="float:left;margin-left:-7em;" arialabelledby="userDropdown">
+                                <a class="dropdown-item" href="./dashboard">
+                                    Dashboard
+                                </a>
+                                <a class="dropdown-item" href="./logout">
+                                    Logout
+                                </a>
+                            </div>
+                        <?php endif; ?>
                     </li>
                 </ul>
             </div>

@@ -14,9 +14,13 @@ class LoginController extends LoginModel
         if (isset($_POST['user'], $_POST['pass'])) {
             if ($this->setUser($_POST['user']) && $this->setPass($_POST['pass'])) {
                 if ($this->setLogin()) {
+                    /*
                     $this->message->setHead(true);
                     $this->message->setMessage('Login efetuado com sucesso!');
                     return true;
+                    */
+                    $_SESSION['time'] = 0;
+                    header('Location: ./dashboard');
                 }
             }
             $this->message->setHead(false);
