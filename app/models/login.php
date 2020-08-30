@@ -13,9 +13,9 @@ class LoginModel extends DBModel
     {
         $query = 'SELECT * FROM users WHERE `user` = ? AND `check` = ?';
         $types = 'si';
-        $params = [$this->getUser(), 1];
+        $params = [$this->params->getUser(), 1];
         if ($res = $this->getResult($query, $types, $params)) {
-            if (password_verify($this->getPass(), $res['pass'])) {
+            if (password_verify($this->params->getPass(), $res['pass'])) {
                 $_SESSION['login'] = $res;
                 return true;
             }

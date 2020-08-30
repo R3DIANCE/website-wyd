@@ -15,7 +15,7 @@ class RegisterModel extends DBModel
         $createDate = date('Y-m-d H:i:m');
         $query = 'INSERT INTO `users` (`user`, `pass`, `email`, `name`, `access`, `check`, `validate`, `createDate`, `updateDate`) VALUES (?, ?, ?, ?, 1, 1, 1, ?, NULL)';
         $types = 'sssss';
-        $params = [$this->getUser(), $this->getPass(), $this->getEmail(), $this->getName(), $createDate];
+        $params = [$this->params->getUser(), $this->params->getPass(), $this->params->getEmail(), $this->params->getName(), $createDate];
         if ($this->getNoResult($query, $types, $params)) {
             return true;
         }

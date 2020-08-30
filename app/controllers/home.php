@@ -3,22 +3,24 @@ if (!defined('LOCAL')) exit();
 
 class HomeController extends HomeModel
 {
-    private object $message;
+    public object $params;
 
     public function __construct()
     {
         parent::__construct();
-        $this->message = new MessageController;
+        $this->params = new ParamsController;
+        $this->setLogout();
         return true;
     }
 
-    public function getHead(): string
+    private function setLogout(): bool
     {
-        return $this->message->getHead();
-    }
-
-    public function getMessage(): array
-    {
-        return $this->message->getMessage();
+        if (isset($_SESSION['logout']) && $_SESSION['logout'] === 0) {
+            $this->params->message->setHead(true);
+            $this->params->message->setMessage('Você efetuou o logout com sucesso!');
+            $_SESSION['logout']++;
+            return true;
+        }
+        return false;
     }
 }
