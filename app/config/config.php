@@ -13,4 +13,10 @@ DEFINE('RECAPTCHA', [
     'secret'    => ''
 ]);
 
+DEFINE('GUILDMARK', [
+    'file'      => 'b000000000',
+    'ext'       => 'bmp',
+    'path'      => 'guildmark/'
+]);
+
 DEFINE('RELEASE', 'C:/Release');

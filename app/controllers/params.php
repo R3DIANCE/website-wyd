@@ -1,5 +1,5 @@
 <?php
-if (!defined('LOCAL')) exit;
+if (!defined('LOCAL')) exit();
 
 class ParamsController
 {
@@ -9,8 +9,10 @@ class ParamsController
     private string $oldpass;
     private string $email;
     private string $name;
+    private int $guildid;
+    private array $guildmark;
     public object $message;
-    
+
     public function __construct()
     {
         $this->message = new MessageController;
@@ -73,6 +75,26 @@ class ParamsController
                 return true;
             }
             $this->message->setMessage('Senha atual inválida, digite a senha atual');
+        }
+        return false;
+    }
+
+    public function setGuildId($id): bool
+    {
+        if (is_integer($id)) {
+            if ($id > 0 && $id < 999) {
+                $this->guildid = $id;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function setGuildmark($mark): bool
+    {
+        if (is_array($mark)) {
+            $this->guildmark = $mark;
+            return true;
         }
         return false;
     }
