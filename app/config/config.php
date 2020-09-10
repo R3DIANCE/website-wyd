@@ -20,3 +20,7 @@ DEFINE('GUILDMARK', [
 ]);
 
 DEFINE('RELEASE', 'C:/Release');
+
+DEFINE('PICPAY', [
+    'seller'    => ''
+])
